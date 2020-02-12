@@ -50,7 +50,7 @@ const getChain = (orbits, name) => {
   return name;
 };
 
-// get each orbit path, find where they intersect, count the length of that path (-2 for YOU and SAN)
+// get each orbit path, find where they intersect, count the length of that path
 const youChain = getChain(planetMap, planetMap.YOU).split(',');
 const sanChain = getChain(planetMap, planetMap.SAN).split(',');
 const intersection = _.intersection(youChain, sanChain);
