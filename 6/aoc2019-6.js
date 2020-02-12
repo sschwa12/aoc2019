@@ -36,8 +36,7 @@ const numOrbitsPerRecursion = _(planetMap)
   .map((name) => recur(planetMap, name))
   .value();
 
-// sum it all up
-const solutionPart1 = _.reduce(numOrbitsPerRecursion, (prev, cur) => prev + cur);
+const solutionPart1 = _.sum(numOrbitsPerRecursion);
 
 console.log('part 1 solution:');
 console.log(solutionPart1);
@@ -52,14 +51,14 @@ const getChain = (orbits, name) => {
 };
 
 // get each orbit path, find where they intersect, count the length of that path (-2 for YOU and SAN)
-const youChain = getChain(planetMap, 'YOU').split(',');
-const sanChain = getChain(planetMap, 'SAN').split(',');
+const youChain = getChain(planetMap, planetMap.YOU).split(',');
+const sanChain = getChain(planetMap, planetMap.SAN).split(',');
 const intersection = _.intersection(youChain, sanChain);
 const spliceFromYou = _.indexOf(youChain, intersection[0]);
 const spliceFromSan = _.indexOf(sanChain, intersection[0]);
 youChain.splice(spliceFromYou);
 sanChain.splice(spliceFromSan);
 
-const solutionPart2 = youChain.length + sanChain.length - 2;
+const solutionPart2 = youChain.length + sanChain.length;
 console.log('part 2 solution:');
 console.log(solutionPart2);
