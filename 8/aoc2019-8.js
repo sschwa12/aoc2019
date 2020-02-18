@@ -31,6 +31,7 @@ const getImage = (w, h, data) => {
 const solution = getImage(25, 6, puzzleInput);
 console.log(solution);
 
+// Part 2
 const getPixel = (col) => {
   for (let index = 0; index < col.length; index += 1) {
     const px = col[index];
@@ -42,15 +43,10 @@ const getPixel = (col) => {
 
 const decodeImage = (w, h, data) => {
   const layers = getLayers(w, h, data);
-  const columns = _.zip(...layers);
-  const final = [];
-  _.each(columns, (col) => {
-    final.push(getPixel(col));
-  });
-  const s = _.chunk(final, w);
-  _.each(s, (ln) => {
-    console.log(_.join(ln, ','));
-  });
+  _(_.zip(...layers))
+    .map(getPixel)
+    .chunk(w)
+    .each((ln) => console.log(_.join(ln, ',')));
 };
 
 // CJZHR
