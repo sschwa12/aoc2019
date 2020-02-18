@@ -32,14 +32,7 @@ const solution = getImage(25, 6, puzzleInput);
 console.log(solution);
 
 // Part 2
-const getPixel = (col) => {
-  for (let index = 0; index < col.length; index += 1) {
-    const px = col[index];
-    if (px === '0' || px === '1') {
-      return px;
-    }
-  }
-};
+const getPixel = col => _.head(_.dropWhile(col, px => px === '2'));
 
 const decodeImage = (w, h, data) => {
   const layers = getLayers(w, h, data);
