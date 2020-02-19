@@ -1,10 +1,7 @@
 const _ = require('lodash');
 const { puzzleInput } = require('./aoc2019-8.data');
 
-const getLayers = (w, h, data) => {
-  const layerSize = data.length / (data.length / (w * h));
-  return _.chunk(data, layerSize);
-};
+const getLayers = (w, h, data) => _.chunk(data, w * h);
 
 // Part 1
 const getImage = (w, h, data) => {
@@ -23,8 +20,8 @@ const getImage = (w, h, data) => {
       lowestZeroRow = l;
     }
   });
-  const groups = _.groupBy(lowestZeroRow);
-  return groups[1].length * groups[2].length;
+  const { 1: oneCount, 2: twoCount } = _.countBy(lowestZeroRow, lzr => lzr);
+  return oneCount * twoCount;
 };
 
 // 2159
