@@ -1,4 +1,4 @@
-const { slice, add, multiply, map, toNumber, range, chunk } = require('lodash');
+const { slice, add, multiply, map, toNumber } = require('lodash');
 const { puzzleInput } = require('./aoc2019-2.data');
 
 // Part 1
