@@ -18,6 +18,7 @@
       "max-len": 0,
       "no-console": 0,
       "consistent-return": "off",
-      "arrow-parens": "off"
+      "arrow-parens": "off",
+      "object-curly-newline": "off"
     }
 }
