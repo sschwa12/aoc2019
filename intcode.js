@@ -26,8 +26,8 @@ class IntcodeComputer {
     this.data = map(data, toNumber);
     this.halted = false;
     this.pc = 0;
-    this.output = '';
-    this.input = input || 1;
+    this.output = null;
+    this.input = input || [1];
   }
 
   getValue(mode, val) {
@@ -57,16 +57,18 @@ class IntcodeComputer {
       }
       case INPUT: {
         const [newLoc] = slice(this.data, this.pc + 1, this.pc + 2);
-        this.data[newLoc] = this.input;
+        this.data[newLoc] = this.input.shift();
         this.pc += 2;
         break;
       }
       case OUTPUT: {
+        // this.output = null;
         const [val] = slice(this.data, this.pc + 1, this.pc + 2);
         const mode = modes[2];
         this.output = this.getValue(mode, val);
         this.pc += 2;
-        break;
+        return this.output;
+        // break;
       }
       case JUMP_IF_TRUE: {
         const [p1, p2] = slice(this.data, this.pc + 1, this.pc + 3);
@@ -112,7 +114,8 @@ class IntcodeComputer {
 
 
   run() {
-    while (!this.halted) {
+    this.output = null;
+    while (!this.halted && this.output === null) {
       this.execute();
     }
     return this.output;

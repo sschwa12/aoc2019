@@ -7,6 +7,6 @@ const output = computer.run();
 console.log(output);
 
 // Part 2
-const computer2 = new IntcodeComputer(puzzleInput, 5);
+const computer2 = new IntcodeComputer(puzzleInput, [5]);
 const output2 = computer2.run();
 console.log(output2);
